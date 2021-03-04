@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            /* grid-template-rows: auto auto auto; */
+            grid-template-areas:
+                'img img Name Name Name'
+                'img img Flavor Flavor Flavor'
+                'Hp Hp Hp Hp Hp'
+                'Ability Ability Ability Poke_height Poke_weight'
+                'FamilyTitle FamilyTitle FamilyTitle FamilyTitle FamilyTitle'
+                'Familyimg Familyimg FamilyName FamilyName FamilyName';
+
+            grid-gap: 10px;
+            background-color: #2196F3;
+            padding: 10px;
+        }
+
+        .grid-container>div {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            /* padding: 20px 0;
+            font-size: 30px; */
+        }
+
+        .Poke_img {
+            grid-area: img;
+        }
+
+        .Poke_Name1 {
+            grid-area: Name;
+        }
+
+        .Poke_flavor_text {
+            grid-area: Flavor;
+        }
+
+        .Poke_stats {
+            grid-area: Hp;
+        }
+
+        .Poke_Ability {
+            grid-area: Ability;
+        }
+        .Poke_height{
+            grid-area: Poke_height;
+
+        }
+        .Poke_weight{
+            grid-area: Poke_weight;
+
+        }
+
+        .FamilyTitle_container {
+            grid-area: FamilyTitle;
+        }
+
+        .FamilyImg {
+            grid-area: Familyimg;
+        }
+
+        .FamilyName {
+            grid-area: FamilyName;
+        }
+
+        .img-circle-small-size {
+            border-radius: 50%;
+            height: 20vh;
+            width: 20vw;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <div class="grid-container">
+        <img class="img-circle-small-size   Poke_img"
+            src="https://pokeres.bastionbot.org/images/pokemon/3.png">
+             <p class="Poke_Name1  ">venusaur</p>
+         <p class="Poke_flavor_text "> species: The plant blooms
+            when it is
+            absorbing solarenergy. It stays
+            on the move to
+            seek sunlight.</p>
+        <div class="Poke_stats">hp:asd asd: asd :asd: asd<br> asd ad asd asd asd asd </div>
+        <div class="Poke_Ability">Ability 111111 </div>
+        <div class="Poke_height">height KG</div>
+        <div class="Poke_weight">weight cm </div>
+        <!--      asdasdasddsadsasda -->
+        <div class="FamilyTitle_container">family</div>
+        <img class="img-circle-small-size  FamilyPoke_img_Clicked FamilyImg"
+            src="https://pokeres.bastionbot.org/images/pokemon//2.png">
+        <div class="FamilyName">nameFamily</div>
+
+    </div>
+
+</body>

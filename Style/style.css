@@ -1,0 +1,160 @@
+.box{
+    width: 300px;
+    border: 15px solid rgb(86, 190, 86);
+    padding: 50px;
+    margin: 20px;
+}
+.center{
+    text-align: center;
+}
+.img-circle{
+    border-radius: 50%;
+    height: 50%;
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.img-circle-small-size{
+  border-radius: 50%;
+  height: 10vh;
+  width: 10vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ }
+body{
+    background-image: url("../Pictures/cqhO8rQ.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.9;
+}
+
+/* Modal popUP */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+
+    
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+
+  .Modal_contin{
+
+  }
+ 
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* grid-template-rows: auto auto auto; */
+    grid-template-areas:
+        'img img Name Name ClickBtn'
+        'img img Flavor Flavor Flavor'
+        'Hp Hp Hp Hp Hp'
+        'Ability Ability Ability Poke_height Poke_weight'
+        'FamilyTitle FamilyTitle FamilyTitle FamilyTitle FamilyTitle'
+        'Familyimg Familyimg FamilyName FamilyName FamilyName';
+
+    grid-gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+}
+
+.grid-container>div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    /* padding: 20px 0;
+    font-size: 30px; */
+}
+
+.Poke_img {
+    grid-area: img;
+}
+
+.Poke_Name1 {
+    grid-area: Name;
+}
+
+.Poke_flavor_text {
+    grid-area: Flavor;
+}
+
+.Poke_stats {
+    grid-area: Hp;
+}
+
+.Poke_Ability {
+    grid-area: Ability;
+}
+.Poke_height{
+    grid-area: Poke_height;
+
+}
+.Poke_weight{
+    grid-area: Poke_weight;
+
+}
+
+.FamilyTitle_container {
+    grid-area: FamilyTitle;
+}
+
+.FamilyImg {
+    grid-area: Familyimg;
+}
+
+.FamilyName {
+    grid-area: FamilyName;
+}
+
+.img-circle-small-size {
+    border-radius: 50%;
+    height: 20vh;
+    width: 20vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ClickBtn{
+  grid-area:ClickBtn;
+}
