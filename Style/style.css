@@ -59,7 +59,7 @@ body{
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    
+     
   }
   
   /* The Close Button */
@@ -90,7 +90,7 @@ body{
     grid-template-areas:
         'img img Name Name ClickBtn'
         'img img Flavor Flavor Flavor'
-        'Hp Hp Hp Hp Hp'
+        'img img Hp Hp Hp'
         'Ability Ability Ability Poke_height Poke_weight'
         'FamilyTitle FamilyTitle FamilyTitle FamilyTitle FamilyTitle'
         'Familyimg Familyimg FamilyName FamilyName FamilyName';
@@ -98,53 +98,82 @@ body{
     grid-gap: 10px;
     background-color: #2196F3;
     padding: 10px;
-}
+    box-shadow: 2px 5px #f6fbfb;
+    border: 2px solid rgb(253, 228, 0);
+    border-radius: 50px 20px;
+   }
 
 .grid-container>div {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    /* padding: 20px 0;
-    font-size: 30px; */
+    /* padding: 20px 0; */
+    /* font-size: 15px; */
 }
 
 .Poke_img {
     grid-area: img;
+    font-weight: bold;
 }
 
 .Poke_Name1 {
     grid-area: Name;
+    font-weight: bold;
+    font-size: 50px;
 }
+ 
 
 .Poke_flavor_text {
     grid-area: Flavor;
+    font-weight: bold;
+
 }
 
 .Poke_stats {
     grid-area: Hp;
+    font-weight: bold;
+
 }
 
 .Poke_Ability {
     grid-area: Ability;
+    font-weight: bold;
+
 }
 .Poke_height{
     grid-area: Poke_height;
+    font-weight: bold;
+
 
 }
 .Poke_weight{
     grid-area: Poke_weight;
+    font-weight: bold;
+
 
 }
 
 .FamilyTitle_container {
     grid-area: FamilyTitle;
+    font-weight: bold;
+    font-size: 50px;
+
+
 }
 
 .FamilyImg {
     grid-area: Familyimg;
+    font-weight: bold;
+    font-size: 50px;
+
+
 }
 
 .FamilyName {
     grid-area: FamilyName;
+    font-weight: bold;
+    font-size: 50px;
+
+
 }
 
 .img-circle-small-size {
@@ -157,4 +186,11 @@ body{
 }
 .ClickBtn{
   grid-area:ClickBtn;
+}
+.button1{
+  background-color: aquamarine;
+  padding: 10px 10px;
+  border-radius: 10%;
+  border: 3px solid black;
+
 }

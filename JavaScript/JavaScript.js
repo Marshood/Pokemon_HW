@@ -60,9 +60,7 @@ function renderPokemon(PokemonData) {
 }
 fetchPokemonData();
 
-function Mute() {
-    alert("Mute");
-}
+ 
 async function PokemonBtnClicked(id) {
     // alert(id);
     let results = await getPokeData(id);
@@ -75,6 +73,7 @@ async function PokemonBtnClicked(id) {
     let modal_content = document.createElement("div");
     modal_content.classList.add("modal-content");
     modal_content.classList.add('grid-container')
+    modal_content.setAttribute("id", "modal-content");
     let span = document.createElement("span");
     span.classList.add("close");
     span.classList.add("ClickBtn");
@@ -83,12 +82,12 @@ async function PokemonBtnClicked(id) {
     modal_content.appendChild(span)
     // <p id="name">Name: </p>
 
-    let paragraphName = document.createElement("p");
-    let paragraphSpecies = document.createElement("p");
+    let paragraphName = document.createElement("div");
+    let paragraphSpecies = document.createElement("div");
     let img = document.createElement("img");
-    let paragraphFamily = document.createElement("p");
+    let paragraphFamily = document.createElement("div");
     let FamilyimgPoke = document.createElement("img");
-    let paragraphFamilyTitle = document.createElement("p");
+    let paragraphFamilyTitle = document.createElement("div");
     paragraphFamilyTitle.classList.add('FamilyTitle_container')
     modal_content.appendChild(paragraphName);
     modal_content.appendChild(paragraphSpecies);
@@ -98,16 +97,16 @@ async function PokemonBtnClicked(id) {
     modal_content.appendChild(FamilyimgPoke);
 
 
-    var ProResolve = Promise.resolve(results.GetEcolvesPokemon)
-    ProResolve.then(function (v) {
-        console.log(v); // 1
+    var ProResolveGetEcolvesPokemon = Promise.resolve(results.GetEcolvesPokemon)
+    ProResolveGetEcolvesPokemon.then(function (v) {
+        // console.log(v); // 1
         paragraphName.classList.add('Poke_Name1');
         paragraphName.innerHTML = `${v.Poke_Name}`
         paragraphSpecies.classList.add('Poke_flavor_text');
         paragraphSpecies.innerHTML = `${v.flavor_text_entries}`
         // img.classList.add('img-circle');
         img.classList.add('img-circle-small-size');
-        img.classList.add('Poke_img');  
+        img.classList.add('Poke_img');
         img.src = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`
         if (v.evolves_from_species != null) {
             paragraphFamilyTitle.innerHTML = "Family: "
@@ -132,6 +131,37 @@ async function PokemonBtnClicked(id) {
             FamilyimgPoke.src = `https://pokeres.bastionbot.org/images/pokemon/${FamilyPokemonID}.png`
         }
     });
+
+    var ProResolveGetStatsAbilityPokemon = Promise.resolve(results.GetStatsAbilityPokemon)
+    ProResolveGetStatsAbilityPokemon.then(function (v) {
+        console.log("vv ", v)
+        let abilitiesDiv = document.createElement("div");
+        abilitiesDiv.classList.add('Poke_Ability');
+        modal_content.appendChild(abilitiesDiv);
+        abilitiesDiv.innerHTML = "Abilities<br>"
+        v.abilities.map(function (abilities) {
+            abilitiesDiv.innerHTML += `${abilities.ability.name} , `
+        });
+
+        let weightDiv = document.createElement("div");
+        weightDiv.classList.add('Poke_weight');
+        weightDiv.innerHTML = `Weight ${v.weight}`
+        let heightDiv = document.createElement("div");
+        heightDiv.classList.add('Poke_height');
+        heightDiv.innerHTML = `Height ${v.height}  `
+        modal_content.appendChild(weightDiv);
+        modal_content.appendChild(heightDiv);
+        let stats = document.createElement("div");
+        modal_content.appendChild(stats);
+
+        stats.classList.add('Poke_stats');
+        stats.innerHTML = `HP ${v.stats.hp}   Attack ${v.stats.hp} 
+          Defense ${v.stats.defense} <br> Special Attack ${v.stats.special_attack} Special Defense ${v.stats.special_defense} 
+        Speed ${v.stats.speed}`
+    })
+
+
+
     myModal = document.getElementById('myModal');
     myModal.appendChild(modal_content);
 
@@ -174,21 +204,37 @@ const getPokeData = (PokeId) => {
 var modal = document.getElementById("myModal");
 function closeSpan() {
     modal.style.display = "none";
+    let myNode = document.getElementById('modal-content');
+    myNode.remove();
 }
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
+        let myNode = document.getElementById('modal-content');
+        myNode.remove();
     }
 }
 
-// sound effect
-//  mySound = new PokemonSound("Sounds/101-opening.mp3");
-// mySound = new GameSound("Sounds/GameSound.wav");
+ 
 
-let mySound = new GameSound("./Sounds/GameSound.wav");
-
+let mySound = new GameSound("./Sounds/101-opening.mp3");
+setTimeout(function() {PlaySoundPokemon() }, 5000);
 function PlaySoundPokemon() {
     mySound.play();
+}
+function Mute() {
+    // mySound.stop();
+    var ButText = document.getElementById("MuteBtn").value;
+    if( ButText==="Mute"){
+     mySound.MuteSound();
+    document.getElementById("MuteBtn").innerHTML='<i class="fas fa-volume-up"></i>';
+    document.getElementById("MuteBtn").value='UnMute';
 
 }
+    else{
+        document.getElementById("MuteBtn").innerHTML='<i class="fas fa-volume-mute"></i>';; 
+        document.getElementById("MuteBtn").value='Mute';
+        mySound.play();
+    }
+ }
 
