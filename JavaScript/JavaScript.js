@@ -4,7 +4,6 @@ function fetchPokemonData() {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
             renderPokemon(data)
         });
 
@@ -29,7 +28,7 @@ function renderPokemon(PokemonData) {
             size = 4
         }
         var PokemonID = Pokemon.url.substr(UrlLength - size);
-        //  console.log("PokemonID ", PokemonID)
+
         PokemonID = PokemonID.slice(0, -1)
         var button = document.createElement("button");
         //  div.innerHTML = Pokemon.name;
@@ -60,11 +59,11 @@ function renderPokemon(PokemonData) {
 }
 fetchPokemonData();
 
- 
+
 async function PokemonBtnClicked(id) {
     // alert(id);
     let results = await getPokeData(id);
-    console.log("results ", results);
+
     modal.style.display = "block";
     var divModel = document.createElement("div");
     divModel.classList.add('modal-content');
@@ -76,9 +75,14 @@ async function PokemonBtnClicked(id) {
     modal_content.setAttribute("id", "modal-content");
     let span = document.createElement("span");
     span.classList.add("close");
-    span.classList.add("ClickBtn");
+    span.classList.add("ClickBtnExit");
     span.onclick = function () { closeSpan(); };
     span.innerText = "x";
+
+    var favoritesBtn = document.createElement('span');
+    favoritesBtn.innerHTML = `<button id="but' + inc + '" onclick="addToFavorite(${id});" >Add To Favorite</button>`;
+    modal_content.appendChild(favoritesBtn)
+
     modal_content.appendChild(span)
     // <p id="name">Name: </p>
 
@@ -99,7 +103,6 @@ async function PokemonBtnClicked(id) {
 
     var ProResolveGetEcolvesPokemon = Promise.resolve(results.GetEcolvesPokemon)
     ProResolveGetEcolvesPokemon.then(function (v) {
-        // console.log(v); // 1
         paragraphName.classList.add('Poke_Name1');
         paragraphName.innerHTML = `${v.Poke_Name}`
         paragraphSpecies.classList.add('Poke_flavor_text');
@@ -125,7 +128,6 @@ async function PokemonBtnClicked(id) {
                 size = 4
             }
             let FamilyPokemonID = v.evolves_from_species.url.substr(v.evolves_from_species.url.length - size);
-            //  console.log("PokemonID ", PokemonID)
             FamilyPokemonID = FamilyPokemonID.slice(0, -1);
             FamilyimgPoke.classList.add('FamilyImg');
             FamilyimgPoke.src = `https://pokeres.bastionbot.org/images/pokemon/${FamilyPokemonID}.png`
@@ -134,7 +136,6 @@ async function PokemonBtnClicked(id) {
 
     var ProResolveGetStatsAbilityPokemon = Promise.resolve(results.GetStatsAbilityPokemon)
     ProResolveGetStatsAbilityPokemon.then(function (v) {
-        console.log("vv ", v)
         let abilitiesDiv = document.createElement("div");
         abilitiesDiv.classList.add('Poke_Ability');
         modal_content.appendChild(abilitiesDiv);
@@ -181,7 +182,6 @@ const getPokeData = (PokeId) => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${PokeId}`)
             .then(response => response.json())
             .then(data => {
-                // console.log("1111 ", data.abilities);
                 let abilities = data.abilities;
                 let stats = {
                     hp: data.stats[0].base_stat,
@@ -202,6 +202,8 @@ const getPokeData = (PokeId) => {
 
 // Get the modal
 var modal = document.getElementById("myModal");
+var FavoriteModal = document.getElementById("FavoriteModal");
+
 function closeSpan() {
     modal.style.display = "none";
     let myNode = document.getElementById('modal-content');
@@ -209,32 +211,43 @@ function closeSpan() {
 }
 window.onclick = function (event) {
     if (event.target == modal) {
+        alert("yes")
         modal.style.display = "none";
         let myNode = document.getElementById('modal-content');
         myNode.remove();
     }
 }
 
- 
+
 
 let mySound = new GameSound("./Sounds/101-opening.mp3");
-setTimeout(function() {PlaySoundPokemon() }, 5000);
+// setTimeout(function () { PlaySoundPokemon() }, 5000);
 function PlaySoundPokemon() {
     mySound.play();
 }
 function Mute() {
     // mySound.stop();
     var ButText = document.getElementById("MuteBtn").value;
-    if( ButText==="Mute"){
-     mySound.MuteSound();
-    document.getElementById("MuteBtn").innerHTML='<i class="fas fa-volume-up"></i>';
-    document.getElementById("MuteBtn").value='UnMute';
-
-}
-    else{
-        document.getElementById("MuteBtn").innerHTML='<i class="fas fa-volume-mute"></i>';; 
-        document.getElementById("MuteBtn").value='Mute';
+    if (ButText === "Mute") {
+        mySound.MuteSound();
+        document.getElementById("MuteBtn").innerHTML = '<i class="fas fa-volume-up"></i>';
+        document.getElementById("MuteBtn").value = 'UnMute';
+    }
+    else {
+        document.getElementById("MuteBtn").innerHTML = '<i class="fas fa-volume-mute"></i>';;
+        document.getElementById("MuteBtn").value = 'Mute';
         mySound.play();
     }
- }
+}
 
+function addToFavorite(id) {
+    localStorage.setItem(`Pokemon${id}`, id);
+    alert("added to favorites")
+}
+
+
+function RemoveFromFavorite(id) {
+    localStorage.removeItem(`Pokemon${id}`);
+    alert("Remove from favorites")
+
+} 
