@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon </title>
+    <link rel="icon" href="Pictures/Pokemon.png" />
+    <script src="https://kit.fontawesome.com/181756b75b.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" media="all" href="Style/style.css" />
+
+</head>
+
+<body>
+    <div class="center">
+        <h1>Pokemon-HW!</h1>
+        <button id="MuteBtn" class="button1" onclick="Mute()" value="Mute">
+            <i class="fas fa-volume-mute"></i>
+        </button>
+        <button id="FavoriteBtn" class="FavoriteBtn" onclick="ShowFavoriteBtn()">
+            <i class="far fa-star"></i>
+        </button>
+    </div>
+
+    <div id='pokemon_container' class='center'>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+        </div>
+        <div id="FavoriteModal" class="FavoriteModal">
+            <!--  -->
+        </div>
+    </div>
+   
+
+
+
+    <script src="JavaScript/Sound.js"></script>
+    <script src="JavaScript/JavaScript.js  "></script>
+    <script src="JavaScript/ShowFavorite.js  "></script>
+
+
+</body>
+
+</html>
+
+
+<!-- 
+
+
+      <div id="myModal" class="modal">
+
+         <div class="modal-content">
+            <span class="close" onClick="closeSpan()">&times;</span>
+            <p id="name">Name: </p>
+            <p id="ability">ability's </p>
+            <p>3</p>
+            <p>4</p>
+            <p>5</p>
+            <p>6</p>
+
+        </div>
+
+    </div>
+ -->

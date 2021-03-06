@@ -221,7 +221,7 @@ window.onclick = function (event) {
 
 
 let mySound = new GameSound("./Sounds/101-opening.mp3");
-// setTimeout(function () { PlaySoundPokemon() }, 5000);
+setTimeout(function () { PlaySoundPokemon() }, 5000);
 function PlaySoundPokemon() {
     mySound.play();
 }
