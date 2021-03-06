@@ -261,7 +261,7 @@ function Mute() {
 // onClick function to  add to favorites
 function addToFavorite(id) {
     localStorage.setItem(`Pokemon${id}`, id);
-    alert("added to favorites");
+    alert("added to favorites!");
     let Fav=document.getElementById('but');
     Fav.innerHTML ="Remove From Favorite";
     // Fav.onclick=`"RemoveFromFavorite(${id})"`;
@@ -272,7 +272,7 @@ function addToFavorite(id) {
 // onClick function to  remove from favorites
 function RemoveFromFavorite(id) {
     localStorage.removeItem(`Pokemon${id}`);
-    alert("Remove from favorites");
+    alert("Remove from favorites!");
      let Fav=document.getElementById('but');
     Fav.innerHTML ="Add To Favorite";
      document.getElementById("but").onclick = function () { addToFavorite(id); };
