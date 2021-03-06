@@ -261,22 +261,18 @@ function Mute() {
 // onClick function to  add to favorites
 function addToFavorite(id) {
     localStorage.setItem(`Pokemon${id}`, id);
-    alert("added to favorites tttttttttttttt");
+    alert("added to favorites");
     let Fav=document.getElementById('but');
     Fav.innerHTML ="Remove From Favorite";
     // Fav.onclick=`"RemoveFromFavorite(${id})"`;
     // Fav.onclick = function() { RemoveFromFavorite(id) }
     document.getElementById("but").onclick = function () { RemoveFromFavorite(id); };
-
-
-    // Fav.innerHTML = `<button id="but" onclick="RemoveFromFavorite(${id});" >Remove From Favorite</button>`;
-
 }
 
 // onClick function to  remove from favorites
 function RemoveFromFavorite(id) {
     localStorage.removeItem(`Pokemon${id}`);
-    alert("Remove from favorites rrrrrrrrrrr");
+    alert("Remove from favorites");
      let Fav=document.getElementById('but');
     Fav.innerHTML ="Add To Favorite";
      document.getElementById("but").onclick = function () { addToFavorite(id); };
