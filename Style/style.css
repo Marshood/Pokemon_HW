@@ -96,31 +96,14 @@ body{
     border-radius: 50px 20px;
    }
   
-/*  
-  .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-     grid-template-areas:
-        'img img Name Name ClickBtn'
-        'img img Flavor Flavor Flavor'
-        'img img Hp Hp Hp'
-        'Ability Ability Ability Poke_height Poke_weight'
-        'FamilyTitle FamilyTitle FamilyTitle FamilyTitle FamilyTitle'
-        'Familyimg Familyimg FamilyName FamilyName FamilyName';
-
-    grid-gap: 10px;
-    background-color: #2196F3;
-    padding: 10px;
-    box-shadow: 2px 5px #f6fbfb;
-    border: 2px solid rgb(253, 228, 0);
-    border-radius: 50px 20px;
-   } */
 
 .grid-container>div {
     background-color: rgba(170, 233, 233, 0.8);
     text-align: center;
     /* padding: 20px 0; */
     /* font-size: 15px; */
+    font-size: 150%;
+
 }
 
 .Poke_img {
@@ -132,6 +115,7 @@ body{
     grid-area: Name;
     font-weight: bold;
     font-size: 50px;
+    
 }
  
 

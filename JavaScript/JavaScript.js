@@ -1,5 +1,6 @@
 
 let data;
+// fetch data from pokeApi 
 function fetchPokemonData() {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
         .then(response => response.json())
@@ -8,7 +9,7 @@ function fetchPokemonData() {
         });
 
 }
-
+// to show the pokemons on the hoome page
 function renderPokemon(PokemonData) {
     data = PokemonData.results;
     let allPokemonContainer = document.getElementById('poke-container');
@@ -59,7 +60,7 @@ function renderPokemon(PokemonData) {
 }
 fetchPokemonData();
 
-
+// to show clicked pokemon details on modal popup 
 async function PokemonBtnClicked(id) {
     // alert(id);
     let results = await getPokeData(id);
@@ -80,7 +81,14 @@ async function PokemonBtnClicked(id) {
     span.innerText = "x";
 
     var favoritesBtn = document.createElement('span');
-    favoritesBtn.innerHTML = `<button id="but' + inc + '" onclick="addToFavorite(${id});" >Add To Favorite</button>`;
+    favoritesBtn.setAttribute("id", "AddRemoveFavorites");
+    if (localStorage.getItem(`Pokemon${id}`) == null) {
+        favoritesBtn.innerHTML = `<button id="but" onclick="addToFavorite(${id});" >Add To Favorite</button>`;
+    }
+    else if (localStorage.getItem(`Pokemon${id}`) != null) {
+        favoritesBtn.innerHTML = `<button id="but" onclick="RemoveFromFavorite(${id});" >Remove From Favorite</button>`;
+
+    }
     modal_content.appendChild(favoritesBtn)
 
     modal_content.appendChild(span)
@@ -167,6 +175,8 @@ async function PokemonBtnClicked(id) {
     myModal.appendChild(modal_content);
 
 }
+// to get pokemon evolve and flavor text by pokemon id
+// to get pokemon special attack hp defense ... by pokemon id
 const getPokeData = (PokeId) => {
     const GetEcolvesPokemon = new Promise((resolve, reject) => {
         fetch(`https://pokeapi.co/api/v2/pokemon-species/${PokeId}`)
@@ -203,12 +213,18 @@ const getPokeData = (PokeId) => {
 // Get the modal
 var modal = document.getElementById("myModal");
 var FavoriteModal = document.getElementById("FavoriteModal");
-
+// onClick function to close the modal popUP
 function closeSpan() {
     modal.style.display = "none";
+    // let myNode = document.getElementById('modal-content');
+    // myNode.remove();
     let myNode = document.getElementById('modal-content');
-    myNode.remove();
+    while (myNode != null) {
+        myNode.remove();
+        myNode = document.getElementById('modal-content');
+    }
 }
+//to close the popUP
 window.onclick = function (event) {
     if (event.target == modal) {
         alert("yes")
@@ -219,12 +235,15 @@ window.onclick = function (event) {
 }
 
 
-
+// initialize the  sound
 let mySound = new GameSound("./Sounds/101-opening.mp3");
+// play the sound after 5s 
 setTimeout(function () { PlaySoundPokemon() }, 5000);
+//play sound
 function PlaySoundPokemon() {
     mySound.play();
 }
+//mute sound
 function Mute() {
     // mySound.stop();
     var ButText = document.getElementById("MuteBtn").value;
@@ -239,15 +258,28 @@ function Mute() {
         mySound.play();
     }
 }
-
+// onClick function to  add to favorites
 function addToFavorite(id) {
     localStorage.setItem(`Pokemon${id}`, id);
-    alert("added to favorites")
+    alert("added to favorites tttttttttttttt");
+    let Fav=document.getElementById('but');
+    Fav.innerHTML ="Remove From Favorite";
+    // Fav.onclick=`"RemoveFromFavorite(${id})"`;
+    // Fav.onclick = function() { RemoveFromFavorite(id) }
+    document.getElementById("but").onclick = function () { RemoveFromFavorite(id); };
+
+
+    // Fav.innerHTML = `<button id="but" onclick="RemoveFromFavorite(${id});" >Remove From Favorite</button>`;
+
 }
 
-
+// onClick function to  remove from favorites
 function RemoveFromFavorite(id) {
     localStorage.removeItem(`Pokemon${id}`);
-    alert("Remove from favorites")
+    alert("Remove from favorites rrrrrrrrrrr");
+     let Fav=document.getElementById('but');
+    Fav.innerHTML ="Add To Favorite";
+     document.getElementById("but").onclick = function () { addToFavorite(id); };
+
 
 } 
